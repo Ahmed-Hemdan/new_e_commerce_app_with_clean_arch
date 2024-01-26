@@ -13,14 +13,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'E-Commerce App',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xfff9f9f9),
         primaryColor: const Color.fromARGB(255, 232, 47, 33),
         inputDecorationTheme: InputDecorationTheme(
           fillColor: Colors.white,
           filled: true,
-          border: const OutlineInputBorder(),
+          border:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5)
+          ),
           labelStyle: Theme.of(context).textTheme.titleMedium,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
