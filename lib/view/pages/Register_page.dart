@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_e_commerce_app/utilities/routes.dart';
 import 'package:new_e_commerce_app/view/widgets/main_button.dart';
 import 'package:new_e_commerce_app/view/widgets/main_text_form_field.dart';
 
@@ -18,6 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 60.0, horizontal: 26.0),
@@ -37,15 +37,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _nameController,
                   text: "Name",
                 ),
-                 const SizedBox(
-                  height: 12,
-                ),
                 MainTextFormField(
                   controller: _emailController,
                   text: "Email",
-                ),
-                const SizedBox(
-                  height: 12,
                 ),
                 MainTextFormField(
                   controller: _passwordController,
@@ -65,7 +59,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-                MainButton(text: "Sign up", onPressed: () {}),
+                MainButton(text: "Sign up", onPressed: () {
+                  if(_formKey.currentState!.validate()){
+                    debugPrint("Sign up done");
+                  }
+                }),
                 const Spacer(),
                 Align(
                   alignment: Alignment.center,

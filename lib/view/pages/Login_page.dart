@@ -14,9 +14,17 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, 
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 60.0, horizontal: 26.0),
@@ -36,9 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _emailController,
                   text: "Email",
                 ),
-                const SizedBox(
-                  height: 12,
-                ),
                 MainTextFormField(
                   controller: _passwordController,
                   text: "Password",
@@ -50,12 +55,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text(
                       "Forgot your password ?",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 75, 73, 73),
+                        color: Color.fromARGB(255, 134, 129, 129),
                       ),
                     ),
                   ),
                 ),
-                MainButton(text: "Login", onPressed: () {}),
+                MainButton(text: "Login", onPressed: () {
+                  if(_formKey.currentState!.validate()){
+                    Navigator.of(context).pushNamed(AppRoutes.navBarPage);
+                  }
+                }),
                 Align(
                   alignment: Alignment.center,
                   child: TextButton(
@@ -65,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text(
                       "Don't have an account ? Register",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 75, 73, 73),
+                        color: Color.fromARGB(255, 134, 129, 129),
                       ),
                     ),
                   ),
